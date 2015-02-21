@@ -3,7 +3,7 @@
  * XXX loglevels are kind of messed up right now, need a properly defined
  * mapping between verbose levels and log levels. 
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #include <stdio.h>
 #include <stdarg.h>

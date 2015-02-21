@@ -1,7 +1,7 @@
 /* deliver_maildir.c
  * Deliver to a maildir folder.
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #include <stdio.h>
 #include <sys/utsname.h>

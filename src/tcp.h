@@ -1,7 +1,7 @@
 /* tcp.h
  * Prototypes and definitions for tcp.c.
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #ifndef _TCP_H
 #define _TCP_H

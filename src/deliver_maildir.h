@@ -1,7 +1,7 @@
 /* deliver_maildir.h
  * Structures and prototypes for deliverying to a maildir.
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #ifndef _DELIVER_MAILDIR_H
 #define _MAILDIR_DELIVER_H

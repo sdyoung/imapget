@@ -1,7 +1,7 @@
 /* delivery_mbox.h
  * Prototypes for delivering to local mbox-format files.
  *
- * See the LICENSE file included with this disribution. 
+ * See the LICENSE file included with this distribution. 
  */
 #ifndef _DELIVERY_MBOX
 #define _DELIVERY_MBOX

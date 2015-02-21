@@ -2,7 +2,7 @@
  * Functions used to manage folders.
  * There is only one, it probably belongs elsewhere. 
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #include <stdio.h>
 #include <string.h>

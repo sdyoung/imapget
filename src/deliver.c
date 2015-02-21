@@ -2,7 +2,7 @@
  * This file basically just contains some wrappers that switch between
  * the different delivery types the user may have selected.
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #include <stdio.h>
 #include <errno.h>

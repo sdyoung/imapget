@@ -1,7 +1,7 @@
 /* main.c 
  * This is the main entrypoint to imapget.
  *
- * See the LICENSE file included with this disribution. 
+ * See the LICENSE file included with this distribution. 
  */
 #include <stdio.h>
 #include <unistd.h>

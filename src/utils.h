@@ -1,7 +1,7 @@
 /* utils.h
  * Prototypes and macros for generic utility functions (mostly for strings)
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #ifndef _UTILS_H
 #define _UTILS_H

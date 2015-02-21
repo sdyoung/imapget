@@ -1,7 +1,7 @@
 /* folder.h
  * Prototypes and definitions for folder management.
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #ifndef _FOLDER_H
 #define _FOLDER_H

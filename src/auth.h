@@ -1,7 +1,7 @@
 /* auth.h
  * Prototypes for our various authentication functions. 
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #ifndef _AUTH_H
 #define _AUTH_H

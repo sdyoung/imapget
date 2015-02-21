@@ -1,7 +1,7 @@
 /* types.h 
  * Defines some primitive types used throughout imapget.
  * 
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #ifndef _TYPES_H
 #define _TYPES_H

@@ -1,7 +1,7 @@
 /* imap.h
  * Prototypes and definitions for IMAP-specific functions. 
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #ifndef _IMAP_H
 #define _IMAP_H

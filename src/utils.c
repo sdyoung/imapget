@@ -1,7 +1,7 @@
 /* utils.c 
  * Various utility functions used throughout imapget.
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #include <stdio.h>
 #include <sysexits.h>

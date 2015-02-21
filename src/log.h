@@ -1,7 +1,7 @@
 /* log.h
  * Prototypes and #defines for logging functions.
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #ifndef _LOG_H
 #define _LOG_H

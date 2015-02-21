@@ -3,7 +3,7 @@
  * servers, folders, default actions, etc.  Everything that is in the config
  * file is stored in structures found here. 
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #ifndef _CF_H
 #define _CF_H

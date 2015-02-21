@@ -1,7 +1,7 @@
 /* delivery.h
  * structs and prototypes for initiating local mail delivery. 
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #ifndef _DELIVERY_H
 #define _DELIVERY_H

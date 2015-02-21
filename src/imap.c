@@ -2,7 +2,7 @@
  * This file contains all the functions used to implement the actual IMAP 
  * protocol itself. It's a big state machine.
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #include <stdio.h>
 #include <errno.h>

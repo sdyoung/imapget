@@ -2,7 +2,7 @@
  * Functions used for delivering mail to external binaries.  This is 
  * refreshingly simple.
  * 
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #include <stdio.h>
 #include <sysexits.h>

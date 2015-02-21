@@ -1,7 +1,7 @@
 /* auth.c
  * Implements cram-md5 and digest-md5.
  * 
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #include <stdio.h>
 #include <string.h>

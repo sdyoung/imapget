@@ -2,7 +2,7 @@
  * This file has all the lower-level cude used to manage TCP socket
  * connections with servers.
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #include <stdio.h>
 #include <sys/types.h>

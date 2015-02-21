@@ -2,7 +2,7 @@
  * Structures and prototypes for delivering messages via external program
  * (eg, procmail)
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #ifndef _DELIVER_PIPETO_H
 #define _DELIVER_PIPETO_H

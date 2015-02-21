@@ -16,7 +16,7 @@
  * lock becomes available.  Additionally, mbox_cleanup periodically checks
  * to see if the lock is available, and if so, flushes all queued messages.
  * 
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #include <stdio.h>
 #include <errno.h>

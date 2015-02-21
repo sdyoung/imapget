@@ -2,7 +2,7 @@
  * This file contains all the code used for parsing and managing configuration
  * information. 
  *
- * See the LICENSE file included with this disribution.
+ * See the LICENSE file included with this distribution.
  */
 #include <stdio.h>
 #include <string.h>
