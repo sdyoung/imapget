@@ -1,0 +1,54 @@
+
+                                imapget 0.9
+
+   INSTALLATION
+   To install imapget, type the following:
+
+   % cd imapget
+   % make
+   % su
+   # make install
+
+   With luck, you should be set.  Edit imapget/src/Makefile if you
+   want to disable SSL support or change where it thinks OpenSSL lives,
+   or if you want to change where imapget gets installed.  By default
+   it ends up in /usr/local/bin.
+
+   INTRODUCTION
+   imapget is an imap mail client. It is not an e-mail program;
+   rather, it allows you to retrieve e-mail from an IMAP server and store it on
+   your local machine. This is useful for people who want to keep a copy of
+   their mail locally,  be  it  so they can perform additional processing (eg.,
+   spam filtering) on it that their mail server does not, or because they
+   travel and do not always have access to their IMAP server.
+
+   FEATURES 
+   Support for the IMAP IDLE extension
+          This allows the IMAP server to notify imapget when new messages
+          arrive, without imapget having to poll the server. Result: Instant
+          mail retrieval instead of a polling interval. Fallback to polling is
+          supported.
+   Support for all IMAP security features
+          imapget supports SSL/TLS encrypted communications, as well as SASL
+          DIGEST-MD5 and CRAM-MD5 authentication. By default, it will use the
+          strongest security supported by the server. With some servers, this
+          means using DIGEST-MD5 over TLS. That's absurdly secure.
+   Direct delivery to mboxes and maildirs
+          as  well  as support for piping to an external binary like
+          procmail, spamassassin, etc.
+   Easy configuration
+          imapget's configuration file is straightforward ad easy to set up.
+          The included template will probably work for most people with a
+          little modification.
+
+   AUTHOR 
+   The author of imapget is Steven Young, <sdyoung@miranda.org>.
+
+   LICENSE 
+   Most of imapget is released under the MIT open source license.  See the file
+   'LICENSE' included with this distribution for details.
+
+   Some parts of imapget are public domain, because they were based off public
+   domain code. At present, this includes the base64 implementation and the MD5
+   code which is based off the public domain MD5 implementation written by
+   Colin Plumb.

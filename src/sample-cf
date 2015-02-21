@@ -1,0 +1,95 @@
+# First come global defaults.
+# no protocol-specific values can appear in the global section
+timeout 30
+keepalive 600
+#deliver-mechanism pipeto "sendmail me@here" # 
+#deliver-maxconcurrency 10 # max 10 local deliveries at a time
+deliver-maxconcurrency 5
+#deliver-mechanism pipeto "procmail"
+#deliver-mechanism mbox "/tmp/mbox"
+#deliver-mechanism pipeto "procmail"
+deliver-mechanism pipeto "procmail"
+encrypted-secrets "/home/me/.imapget.secrets"
+
+#log-syslog
+log-file "logfile"
+verbose 3
+#runforeground
+#delete-read * # default action is to delete all read mail.  specifying
+              # a non-wildcard value (eg folder-specific) -read action
+              # here is an error.  we could leave out the wildcard
+              # without losing information but it would make the syntax
+              # a little inconsistent for move-read.
+#move-read * oldmail
+leave-read * 
+timeout 30
+maximum-consecutive-failures 5
+pollinterval 10
+
+# maximum number of consecutive connection failures we will tolerate
+# before disabling a server.  setting this to 0 makes it infinite.
+
+# global defaults only take effect after they appear in the file.
+# MUST appear at the top of the file.  
+# 
+#server mail.myisp.com:143 #port optional
+#  # from here on out the imap config file function is reading in. 
+#  # each protocol has defaults, such as authentication plain for IMAP
+#  username me
+#  password redacted
+#  authentication plain # default
+#  checkfolder INBOX # should INBOX be a default? do we need a no-INBOX then?
+#  move-read INBOX oldmail # move retrieved mail to the oldmail folder.
+#  checkfolder general-announce
+#  delete-read * # more specific -read actions override less specific 
+#  timeout 60 # this server is slow
+#endserver
+#
+#server mail.myisp2.com 
+#  username me
+#  password foobar
+#  checkfolder INBOX
+#  checkfolder evil
+#  move-read * readmail # move-read target folder will be created if necessary 
+#endserver
+#
+#server mail.myisp3.com 
+#  preauth
+#  checkfolder INBOX
+##  delete-read bollocks # error! we are not checking bollocks
+#                       # the -read action must always appear after that folder
+#                       # has been defined with checkfolder.
+#endserver
+#
+#
+#server localhost
+#    username me
+#    password redacted
+#    checkfolder INBOX
+#    delete-read *
+#endserver
+#
+#server localhost:8888
+#   username me 
+#    password redacted
+#    checkfolder INBOX
+#    delete-read *
+#endserver
+
+#server localhost
+#   use-ssl
+#   use-starttls
+#   cert-noverify
+#   username me
+#   checkfolder INBOX
+#   authentication login
+#   leave-read *
+#endserver
+
+imaps-server localhost:1234
+    authentication login
+    username me
+    checkfolder INBOX
+    checkfolder Mail/imap
+    leave-read *
+endserver

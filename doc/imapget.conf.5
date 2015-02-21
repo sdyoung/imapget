@@ -1,0 +1,310 @@
+.TH imapget.conf 5 "Feb 2015" "imapget version 1.0"
+.SH NAME
+$HOME/.imapget.conf 
+.SH DESCRIPTION
+The file 
+.B $HOME/.imapget.conf
+or 
+.B /etc/imapget.conf
+is read by
+.BR imapget (1)
+at startup or after receiving SIGHUP.  This file is used to configure
+imapget's behaviour and to specify what servers it should connect to
+for mail retrieval.  See EXAMPLES at the end for an example of 
+a imapget configuration file.
+.PP
+The configuration file consists of two sections; the first is the global
+parameters section, which is followed by one or more server-specific 
+parameter sections.  Some values may only appear in the global section;
+others simply acts as defaults for server sections, and may be overridden
+inside of a server specific section.  Keywords that are only valid in
+the global context are denoted with (global only).  In addition,
+some keywords are mandatory in the server section - these are denoted
+with (required).
+.PP
+Valid entries are:
+
+.B runforeground (global only)
+.RS 
+Do not attempt to detach from the current terminal and run as a background
+process.  imapget will stay in the foreground until it terminates.
+.RE
+
+.B deliver-mechanism 
+.I mechanism
+.I "parameter"
+.B (global only)
+.RS 
+Indicates the method of local message delivery to use.  Valid entries
+for 
+.I mechanism
+are pipeto, mbox, or maildir.  The 
+.I parameter
+field specified the program to pipe the message to, the mbox to deliver
+to, or the maildir to deliver to, respectively.
+.RE
+
+.B deliver-maxconcurrency 
+.I maximimum processes
+.B (global only)
+.RS
+Specifies the maximum number of deliveries that can be in progress
+at once.  This primarily affects the pipeto delivery mechanism, where
+it limits the number of delivery processes that can be running at once.  
+Any messages that need to be delivered while the maximum number of 
+processes has been reached will be enqueued and processed when some
+of the delivery processes exit.
+.RE
+
+.B log-syslog (global only)
+.RS
+Indicates that imapget should use syslog for logging output.
+.RE
+
+.B log-file
+.I filename
+.B (global only)
+.RS
+Indicates that imapget should log to the file path specified by
+.I filename.
+.RE
+
+.B verbose 
+.I verbosity-level (global only)
+.RS
+Sets the level of verbosity in imapget's logging.  1 is quiet, 2 is 
+normal, 3 includes a dump of all traffic between the client and the server.
+A level of 2 is normally what imapget runs with, and it is the default.
+.RE
+
+.B maximum-consecutive-failures
+.I failure-count
+.B (global only)
+.RS
+Sets the maximum number of consecutive connection errors a server can
+have before it will be disabled.  Set to 0 for unlimited.  Otherwise,
+when this limit is reached the server will be disabled for the 
+amount of time indicated by the 
+.B failure-sleep
+configuration keyword.
+.RE
+
+.B failure-sleep
+.I seconds
+.B (global only)
+.RS
+When a server is disabled due to too many consecutive connection failures
+(see 
+.B maximum-connection-failures
+above), this argument specifies how long the server should be disabled for
+before imapget tries again.
+.RE
+
+.B keepalive
+.I seconds
+.B (global only)
+.RS
+Indicates how long imapget should allow a connection to idle before it sends
+a keepalive request in order to verify the connection is still functional.
+.RE
+
+.B server
+.I hostname:port
+.B (global only)
+.RS
+This starts a server-specific section of the configuration file.  
+The argument indicates what the hostname and port of the IMAP server
+is; if it is running on the standard port (143), the
+.I :port
+section can be omitted.
+.RE
+
+.B imaps-server
+.I hostname:port
+.B (global only)
+.RS
+This starts a server-specific section of the configuration file for a
+server using IMAPS.  The port can be omitted if the standard imaps
+port (993) is being used.  Note this has no effect on whether or not
+a regular IMAP connection will use SSL; regular IMAP connections will
+always switch to SSL if the server supports it and imapget was compiled
+with SSL support.
+.RE
+
+.B username
+.I username
+.B (required, unless the "authentication preauth" keyword is used)
+.RS
+This specifies the username to be used for authenticating with the server.
+This field is mandatory, unless the preauth keyword appears in this server
+section.
+.RE
+
+.B pollinterval
+.I seconds
+.RS
+This indicates what the polling interval should be for servers that do
+not support the IMAP IDLE extension (such as Netscape's IMAP server).
+.RE
+
+.B use-poll
+.B (server section only)
+.RS
+This specifies that polling instead of asynchronous message notification
+should be used for this server.  imapget will automatically fall back
+to polling in such cases, but this keyword is required to prevent
+it from emitting a warning.
+.RE
+
+.B password
+.I password
+.B (required, unless the "authentication preauth" keyword is used)
+.RS
+This specifies the password to be used for authenticating with the server.
+This field is mandatory, unless the preauth keyword appears in this
+server section.
+.RE
+
+.B checkfolder
+.I folder-name
+.B (at least one of these must appear in a server section)
+.RS
+Specifies a folder to be checked for mail on this server.
+.RE
+
+.B authentication
+.I authentication-type
+.B (required, unless preauth is used)
+.RS
+Specifies the authentication type to be used with the server.  Valid
+valus are login, cram-md5, digest-md5, and preauth.  login
+is for regular plaintext LOGIN authentication, cram-md5 and digest-md5
+use those respective challenge/response protocols, and preauth indicates
+the server is configured to preauthenticate and no credentials are required.
+Note that imapget will refuse to autonegotiate a plaintext authentication;
+if you really want this, put authenticate login in your configuration file.
+.RE
+
+.B move-read
+.I folder
+.I target-folder
+.RS
+Indicates that read mail from 
+.I folder
+should be moved to 
+.B target-folder
+after it has been retrieved.  '*' specifies a wildcard that will match
+all folders that are not explicitly specified with a move-read, 
+leave-read or delete-read keyword of their own.
+.RE
+
+.B delete-read
+.I folder
+.RS
+Indicates that read mail from
+.I folder
+should be deleted after it has been retrieved.  '*' specifies a wildcard 
+that will match all folders that are not explicity specified with a
+move-read, leave-read or delete-read keyword of their own.
+.RE
+
+.B leave-read
+.I folder
+.RS
+Indicates that read mail from
+.I folder
+should be left in the folder.  '*' specifies a wildcard that will
+match all folders that are not explicitly specified with a move-read,
+leave-read or delete-read keyword of their own.
+.RE
+
+.B timeout
+.I seconds
+.RS
+Indicates that the server should be given
+.I seconds
+seconds to reply to commands before imapget drops the connection
+and tries again.
+
+.B use-ssl
+.RS
+Indicates that this server should use SSL authentication.  This means imapget
+will try to connect on port 993 (imaps) instead of 143, unless you override
+it with a port number in the server definition.  This has no impact on
+if imapget will start an SSL connection on a regular IMAP connection through
+port 143; it will always do so if the server supports it.
+.SH EXAMPLES
+.Vb 3
+.Bd -literal
+# Example imapget.conf file.
+.nf
+# First come global defaults.
+timeout 30         # set to 0 for never
+deliver-mechanism pipeto "procmail"
+deliver-maxconcurrency 5 # max 5 local deliveries at a time
+#deliver-mechanism mbox "/var/spool/mail/me"
+#deliver-mechanism maildir "/home/me/Maildir/"
+
+#log-syslog
+log-file "logfile"
+
+#delete-read * # default action is to delete all read mail.  specifying
+               # a non-wildcard value (eg folder-specific) -read action
+               # here is an error.  
+
+#move-read * oldmail
+leave-read * 
+#runforeground
+# Allow a maximum of 5 consecutive connection failures.
+maximum-consecutive-failures 5
+# After 5 consecutive connection failures, disable the
+# server for 30 seconds.
+failure-sleep 30
+# global defaults only take effect after they appear in the file.
+# They MUST appear at the top of the file.  
+# 
+server mail.myisp.com:143 #port optional
+  username me
+  password mypassword
+  authentication login 
+  checkfolder INBOX 
+  checkfolder general-announce
+  move-read INBOX oldmail # move retrieved mail from INBOX to oldmail
+  delete-read *           # delete all other read mail.
+  timeout 60              # this server is slow
+endserver
+
+server mail.myisp2.com 
+  username me
+  password mypassword
+  authentication cram-md5
+  checkfolder INBOX
+  checkfolder evil
+  delete-read *
+endserver
+
+imaps-server mail.myisp3.com 
+  authentication preauth
+  checkfolder INBOX
+  # since we don't specify what to do with read mail,
+  # the global default applies and it is left in the folder.
+  use-poll                 # server does not support IDLE
+endserver
+.Ed
+.SH SIGNALS
+SIGHUP to reread configuration and reconnect to all servers.
+.RE
+SIGTERM to exit gracefully.
+.SH NOTES
+Delivering to an mbox is a risky business.  There are several locking 
+mechanisms used by various mail agents, and there is no consensus on
+which should be used.  Additionally, many of these methods won't work
+properly over NFS.  Basically, you shouldn't use mbox, and if you do,
+there is plenty of opportunity for things to go wrong with the result 
+being your mbox gets corrupted, but this is true for all programs that
+try to use mboxes.
+.SH "SEE ALSO"
+.BR imapget(1)
+.SH AUTHOR
+.B imapget
+was written by Steven Young <sdyoung@miranda.org>.

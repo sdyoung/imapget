@@ -1,0 +1,16 @@
+  I haven't updated the documentation yet to reflect some of the new features.
+There's only one you care about: encrypted secrets.
+
+  Put
+  encrypted-secrets "/path/to/my/secrets/file"
+  in your imapget.conf.  Don't worry about creating that file, it will
+be created if needed.
+
+  Remove the password lines from your server sections in imapget.conf.
+
+  Run imapget -u -c [config file].  It will see you are creating a new 
+encrypted secrets file and should prompt you for a secrets file passphrase,
+folllowed by passwords for each server you've defined.
+
+  From then on just run imapget -c [config].  It will prompt you for the 
+passphrase to your secrets file and then will leave you alone.
